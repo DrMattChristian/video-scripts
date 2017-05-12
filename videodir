@@ -1,0 +1,9 @@
+#!/bin/bash
+# Create MP4 video in H.264 format by converting from a series of JPEG images.
+# This assumes JPEG file names are dated the same way as parent directory.
+for d in $*
+do
+n=$(basename $d)
+ffmpeg -hide_banner -f image2 -r 12 -i $n/$n-%04d.jpg -pix_fmt yuv420p $n/$n.mp4
+done
+

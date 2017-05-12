@@ -1,0 +1,8 @@
+#!/bin/bash
+# Sort images in directory then rename into sequence
+declare -i d=1
+for f in $(ls -1 $* | sort -n)
+do
+  mv -n -v $f $(printf "%05d.jpg" $d)
+  declare -i d=$d+1
+done

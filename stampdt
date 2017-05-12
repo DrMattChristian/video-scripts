@@ -1,0 +1,14 @@
+#!/bin/bash
+# Add date time stamp to JPEG files as white text in lower right corner.
+# Assumes 1920x1080 image size and accurate EXIF date time.  OVERWRITES.
+for d in $*
+do
+cd $d
+for j in $(ls -1 *.jpg)
+do
+gm convert $j -pointsize 50 -fill white -draw 'text 1400,1040 "%[EXIF:DateTime]"' $j
+done
+touch .dtstamped
+cd ..
+done
+
